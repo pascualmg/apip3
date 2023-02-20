@@ -3,11 +3,33 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Repository\DragonTreasureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DragonTreasureRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    shortName: 'treasure',
+    description: 'A treasure that a dragon has found wow.',
+    operations: [
+        new Get(
+            uriTemplate: '/tesorico-de-dragon/{id}',
+        ),
+        new GetCollection(
+            uriTemplate: '/tesoros-de-dragon',
+        ),
+        new Post(),
+        new Put(),
+        new Patch(),
+        new Delete(),
+    ],
+)
+]
 class DragonTreasure
 {
     #[ORM\Id]
@@ -16,6 +38,9 @@ class DragonTreasure
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    /**
+     *Nombre del tesoro
+     */
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
