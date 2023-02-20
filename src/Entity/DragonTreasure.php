@@ -17,12 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
     shortName: 'treasure',
     description: 'A treasure that a dragon has found wow.',
     operations: [
-        new Get(
-            uriTemplate: '/tesorico-de-dragon/{id}',
-        ),
-        new GetCollection(
-            uriTemplate: '/tesoros-de-dragon',
-        ),
+        new Get(),
+        new GetCollection(),
         new Post(),
         new Put(),
         new Patch(),
